@@ -19,6 +19,47 @@ The file `config.py` defines each unit's role:
 | `arp`    | Plays arpeggios that follow chords |
 
 ---
+## 📁 folder structure:
+```
+firmware/
+├── README.md             # CircuitPython usage & setup instructions
+├── boot.py               # Auto-run stub to launch main code on reset
+├── code.py               # Entry-point script that wires everything together
+│
+├── config/               # User-tweakable settings and menus
+│   ├── config.py         # Role definitions (boss, arp, chords, etc.) & parameters
+│   └── menu.txt          # Text menu definitions shown on the display
+│
+├── src/                  # Core application code broken into two layers
+│   ├── core/             # High-level “unit” drivers (boss, arp, pitch, …)
+│   │   ├── boss.py       # Master song/section manager
+│   │   ├── chords.py     # Chord progression engine
+│   │   ├── pattern.py    # Drum-pattern sequencer
+│   │   ├── pitch.py      # Melody & bass line handler
+│   │   └── arp.py        # Real-time arpeggiator
+│   │
+│   └── common/           # Shared utilities & hardware abstractions
+│       ├── audio.py      # Synth/audio helper routines
+│       ├── hw.py         # Pin/encoder/button abstraction
+│       ├── menu.py       # On-screen menu rendering & logic
+│       ├── network.py    # Networking (Wi-Fi/OSC/etc.) support
+│       ├── song.py       # Song data structures & serialization
+│       └── ui.py         # Display & UI primitives
+│
+├── lib/                  # Bundled 3rd-party CircuitPython libraries/drivers
+│   ├── adafruit_midi/      # MIDI bindings
+│   ├── adafruit_imageload/ # Image-loading helper
+│   ├── adafruit_st7735r.mpy # ST7735 display driver
+│   ├── adafruit_wave.mpy    # WAV-sample playback driver
+│   ├── neopixel.mpy         # WS2812 “NeoPixel” LED driver
+│   └── font.bmp             # Built-in font bitmap
+│
+└── assets/               # Static resources bundled into filesystem
+    ├── images/           # UI graphics, icons, etc.
+    ├── audio/            # Samples and wavetable files
+    └── arpai.bin         # Demo song (used by boss)
+```
+---
 
 ## 🧰 Hardware Versions
 
@@ -31,15 +72,15 @@ The file `config.py` defines each unit's role:
 
 ## 🧪 Development Notes
 
-I've used AI extensively for: Code refactoring and error handling. It’s a work in progress and likely a few bugs left—but it’s definitely more robust than before :)
+I've used AI extensively for code refactoring, improvements and error handling. It's a work in progress and likely a few bugs left — but it's definitely more robust than before :)
 
 ---
 ## ❤️ Special Thanks
 
 Huge thanks to the creators and maintainers of open-source tools that made this project possible.  
-Special gratitude to [**Adafruit**](https://www.adafruit.com/) for developing [**CircuitPython**](https://circuitpython.org/board/lolin_s2_mini/), which made firmware development approachable, flexible, and fun—even for hardware newcomers.  
-Thanks also to the team behind [**synthio**](https://docs.circuitpython.org/en/latest/shared-bindings/synthio/), whose powerful audio capabilities laid the groundwork for expressive, real-time sound generation on microcontrollers.  
-And to Microsoft Research for [**getMusic**](https://github.com/microsoft/muzic), and to all the explorers at the intersection of music, AI, and creative technology—your curiosity and generosity continue to inspire.
+- Special gratitude to [**Adafruit**](https://www.adafruit.com/) for developing [**CircuitPython**](https://circuitpython.org/board/lolin_s2_mini/), which made firmware development approachable, flexible, and fun—even for hardware newcomers.  
+- Thanks also to the team behind [**synthio**](https://docs.circuitpython.org/en/latest/shared-bindings/synthio/), whose powerful audio capabilities laid the groundwork for expressive, real-time sound generation on microcontrollers.  
+- And to Microsoft Research for [**getMusic**](https://github.com/microsoft/muzic), and to all the explorers at the intersection of music, AI, and creative technology—your curiosity and generosity continue to inspire.
 
 ---
 ## 🚀 Future Development
@@ -51,7 +92,7 @@ Plenty remains to be done. The current demo uses mostly hard-coded elements, so 
 - 🖼️ **Optimized graphics**  *(Smoother animations with less CPU load)*
 - 🎚️ **Instrument sound selection and parameter tuning**  *(Velocity, bend, swing, ADSR, filters)*
 - 🔀 **Stacked octave mode**  *(Multiple units act as one extended synth)*
-- 🌐 **Ai server connection**  *(currently manual)*
+- 🌐 **Ai server connection**  *(Currently manual)*
 - 🔊 **Maybe a built-in speaker?**
 - 🎵 **AMY synth library integration?**
 
@@ -69,7 +110,7 @@ Got ideas? Want to help improve the synth engine, optimize graphics, or design n
 3. Submit issues or pull requests  
 4. Join the discussion on hardware, AI models, or interface design
 
-### 🧠 Imagine What’s Next
+### 🧠 Imagine What's Next
 
 Leet AI is still early, but the concept is alive. With your feedback, forks, and experiments, this can grow into a truly modular, generative instrument playground.
 
