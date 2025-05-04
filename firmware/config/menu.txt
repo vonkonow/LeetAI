@@ -1,0 +1,14 @@
+Menu
+Test
+Settings
+	send song|send_song
+	set channel|set_channel
+	my ip|show_my_ip
+	pair request|send_pair
+	paired devices|show_paired_devices
+	set device mode
+		conductor|set_mode:0
+		melodic|set_mode:1
+		chord|set_mode:2
+		arpeggio|set_mode:3
+		drum|set_mode:4
